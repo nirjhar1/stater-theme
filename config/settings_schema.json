@@ -7,4 +7,15 @@
         "theme_documentation_url": "https://shohan-online-shop.myshopify.com/",
         "theme_support_url": "https://shohan-online-shop.myshopify.com/"
     },
+    {
+        "name": "Logo",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "logo",
+                "label": "Logo"
+        
+            }
+        ]
+    }
 ]
