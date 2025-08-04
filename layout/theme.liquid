@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ request.locale.iso_code }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="{{ page_description }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <title>{{ page_title }}</title>
+     {% comment %} all css here {% endcomment %}
+    {{ 'bootstrap' | asset_url | stylesheet_tag }}
+    {{ 'style.css' | asset_url | stylesheet_tag }}
      {{content_for_header}} 
 </head>
 <body>
+
      {% sections 'header-group' %}
      <main>
           {{content_for_layout}} 
      </main>
      {% sections 'footer-group' %}
+
+     
+     {% comment %} all js here {% endcomment %}
+     <script src="{{ 'jquery.js' | asset_url }}" defer="defer"></script>
+     <script src="{{ 'popper.js' | asset_url }}" defer="defer"></script>
+     <script src="{{ 'bootstrap.min.js' | asset_url }}" defer="defer"></script>
 </body>
 </html>
