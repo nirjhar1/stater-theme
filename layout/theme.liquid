@@ -12,7 +12,7 @@
     {{ 'style.css' | asset_url | stylesheet_tag }}
      {{content_for_header}} 
 </head>
-<body>
+<body id="{{ page_title | handleize }}" class="{{ template }} {% if template.name == 'product' %}{{ product.handle }}{% endif %} {% if template.name == 'collection' %}{{ collection.handle }}{% endif %}">
 
      {% sections 'header-group' %}
      <main>
@@ -20,7 +20,7 @@
      </main>
      {% sections 'footer-group' %}
 
-     
+
      {% comment %} all js here {% endcomment %}
      <script src="{{ 'jquery.js' | asset_url }}" defer="defer"></script>
      <script src="{{ 'popper.js' | asset_url }}" defer="defer"></script>
