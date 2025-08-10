@@ -1,0 +1,32 @@
+<div class="card">
+	{%- if product.featured_media != blank -%}
+		<img
+			src="{{ product.featured_media | img_url:'master' }}"
+			class="card-img-top"
+			alt="{{ product.title | escape }}"
+		>
+	{%- else -%}
+		{{ 'collection-1' | placeholder_svg_tag }}
+	{%- endif -%}
+	<div class="card-body">
+		<div class="card-badge">
+			{%- if product.available == false -%}
+				<span class="badge rounded-pill text-bg-danger">
+					{{- section.settings.sold_title -}}
+				</span>
+			{%- elsif product.compare_at_price > product.price and product.available -%}
+				<span class="badge rounded-pill text-bg-success">
+					{{- section.settings.sale_title -}}
+				</span>
+			{%- endif -%}
+		</div>
+		<h5 class="card-title">{{ product.title }}</h5>
+		<div class="price">
+			<s>
+				<span class="compare-price">{{ product.compare_at_price | money }}</span>
+			</s>
+			<span class="product-price">{{ product.price | money }}</span>
+		</div>
+		<a href="{{ product.url }}" class="btn btn-primary">see product</a>
+	</div>
+</div>
