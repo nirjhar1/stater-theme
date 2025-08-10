@@ -74,3 +74,18 @@
     visibility: visible;
     top: 0;
 }
+
+/* footer */
+
+.footer-links{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.footer-links a{
+    text-decoration: none;
+    color: #000;
+    padding: 5px 0;
+    display: block;
+    transition: all 0.3s;
+}

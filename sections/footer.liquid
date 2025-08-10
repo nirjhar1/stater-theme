@@ -1,1 +1,95 @@
-<h1>this is footer area </h1>
+
+<div class="container-fluid">
+    <div class="row">
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'info' %}
+            <div class="col-xl-3">
+                <div class="footer-widget">
+                    <h4>{{ block.settings.title }}</h4>
+                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere impedit quas ab suscipit explicabo eius ipsam soluta cupiditate voluptates blanditiis illum consequatur hic eaque totam veniam, magnam dolore, dolor nesciunt.</div>
+                </div>
+            </div>
+            {%- when 'link' -%}
+            <div class="col-xl-3">
+                <div class="footer-widget">
+                    <h4>{{ block.settings.title }}</h4>
+                    <ul class="footer-links">
+                        {%- for link in block.settings.menu.links -%}
+                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            </div>
+            {% else %}
+                please add blocks form the theme editor
+          {% endcase %}
+        {%- endfor -%}
+
+
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "Footer Area",
+        "class": "tp-footer",
+        "settings": [],
+        "blocks": [
+            {
+                "type": "info",
+                "name": "Comopany Information",
+                "limit": 1,
+                "settings": [
+                    {
+                      "type": "text",
+                      "id": "title",
+                      "label": "Title",
+                      "default":"Company information"
+                    },
+                    {
+                      "type": "richtext",
+                      "id": "content",
+                      "label": "Content",
+                      "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere impedit quas ab suscipit explicabo eius ipsam soluta cupiditate voluptates blanditiis illum consequatur hic eaque totam veniam, magnam dolore, dolor nesciunt.</p>"
+                    },
+                ]
+            },
+            {
+                "type": "link",
+                "name": "Link",
+                "limit": 3,
+                "settings": [
+                    {
+                      "type": "text",
+                      "id": "title",
+                      "label": "Title",
+                      "default":"Imoprtant Links"
+                    },
+                    {
+                      "type": "link_list",
+                      "id": "menu",
+                      "label": "Menu"
+                    },
+                ]
+            }
+        ],
+        "default": {
+            "blocks": [
+                {
+                    "type": "info",
+                    "settings": {
+                        "title": "Company information",
+                    }
+                },
+                {
+                    "type": "link",
+                    "settings": {
+                        "title": "Imoprtant Links",
+                    }
+                }
+            ]
+        }
+        
+    }
+{% endschema %}
