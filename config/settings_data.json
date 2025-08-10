@@ -8,17 +8,8 @@
  * ------------------------------------------------------------
  */
 {
-  "type": "header",
-  "name": "Header",
-  "sections": {
-    "header": {
-      "type": "header",
-      "settings": {
-        "menu": "main-menu"
-      }
-    }
-  },
-  "order": [
-    "header"
-  ]
+  "current": {
+    "logo": "shopify://shop_images/alexa.svg",
+    "content_for_index": []
+  }
 }
