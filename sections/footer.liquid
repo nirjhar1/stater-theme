@@ -1,17 +1,23 @@
 
 <div class="container-fluid">
     <div class="row">
+        {%- assign block_count = section.blocks.size -%}
+        {%- if block_count > 0 -%}
+            {%- assign col_width = 12 | divided_by: block_count -%}
+            {%- else -%}
+            {%- assign col_width = 12 -%}
+        {%- endif -%}
         {%- for block in section.blocks -%}
           {% case block.type %}
             {% when 'info' %}
-            <div class="col-xl-3">
+            <div class="col-xl-{{ col_width }}" {{ block.shopify_attributes }}>
                 <div class="footer-widget">
                     <h4>{{ block.settings.title }}</h4>
                     <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere impedit quas ab suscipit explicabo eius ipsam soluta cupiditate voluptates blanditiis illum consequatur hic eaque totam veniam, magnam dolore, dolor nesciunt.</div>
                 </div>
             </div>
             {%- when 'link' -%}
-            <div class="col-xl-3">
+            <div class="col-xl-{{ col_width }}" {{ block.shopify_attributes }}>
                 <div class="footer-widget">
                     <h4>{{ block.settings.title }}</h4>
                     <ul class="footer-links">

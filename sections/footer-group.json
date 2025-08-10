@@ -21,21 +21,21 @@
             "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere impedit quas ab suscipit explicabo eius ipsam soluta cupiditate voluptates blanditiis illum consequatur hic eaque totam veniam, magnam dolore, dolor nesciunt.</p>"
           }
         },
-        "link_8w4KC4": {
+        "link_GjeE3r": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
             "menu": "footer"
           }
         },
-        "link_7Bygff": {
+        "link_4XmwJj": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
             "menu": "footer"
           }
         },
-        "link_P6FawP": {
+        "link_wNTLBw": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
@@ -45,9 +45,9 @@
       },
       "block_order": [
         "info_raDAjt",
-        "link_8w4KC4",
-        "link_7Bygff",
-        "link_P6FawP"
+        "link_GjeE3r",
+        "link_4XmwJj",
+        "link_wNTLBw"
       ],
       "settings": {}
     }
