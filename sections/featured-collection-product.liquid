@@ -1,0 +1,148 @@
+<style>
+	.featured-collection-product {
+	    background-color: #f8f9fa;
+	    padding: {{ section.settings.count }}px 0;
+	}
+	   .section-title{
+	       text-align: {{ section.settings.section_Title_alignment }};
+	       margin-bottom: 30px;
+	       font-size: 2rem;
+	       font-weight: bold;
+	   }
+</style>
+
+<section class="featured-collection-product">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12">
+				<h2 class="section-title">{{ section.settings.section_title }}</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% comment %} {%- paginate collections.all.products by 30 -%} {% endcomment %}
+			{%- if section.settings.collections.products.size > 0 -%}
+				{% for product in section.settings.collections.products limit: 8 %}
+					<div class="col-xl-{{ section.settings.card_count }} mb-4">
+						<div class="card">
+							{%- if product.featured_media != blank -%}
+								<img
+									src="{{ product.featured_media | img_url:'master' }}"
+									class="card-img-top"
+									alt="{{ product.title | escape }}"
+								>
+							{%- else -%}
+								{{ 'collection-1' | placeholder_svg_tag }}
+							{%- endif -%}
+							<div class="card-body">
+								<div class="card-badge">
+									{%- if product.available == false -%}
+										<span class="badge rounded-pill text-bg-danger">
+											{{- section.settings.sold_title -}}
+										</span>
+									{%- elsif product.compare_at_price > product.price and product.available -%}
+										<span class="badge rounded-pill text-bg-success">
+											{{- section.settings.sale_title -}}
+										</span>
+									{%- endif -%}
+								</div>
+								<h5 class="card-title">{{ product.title }}</h5>
+								<div class="price">
+									<s>
+										<span class="compare-price">{{ product.compare_at_price | money }}</span>
+									</s>
+									<span class="product-price">{{ product.price | money }}</span>
+								</div>
+								<a href="{{ product.url }}" class="btn btn-primary">see product</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			{%- else -%}
+				no products found
+			{%- endif -%}
+			{% comment %}
+				<div>
+						{{- paginate | default_pagination -}}
+					</div>
+				{%- endpaginate -%}
+			{% endcomment %}
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Featured Product",
+	"class": "tp-product-section",
+	"settings": [
+		{
+			"type": "range",
+			"id": "count",
+			"min": 50,
+			"max": 150,
+			"step": 5,
+			"unit": "px",
+			"label": "Padding",
+			"default": 50
+		},
+		{
+			"type": "range",
+			"id": "card_count",
+			"min": 2,
+			"max": 6,
+			"step": 1,
+			"label": "card count",
+			"default": 3
+		},
+		{
+			"type": "text",
+			"id": "section_title",
+			"label": "section title",
+			"default": "Featured Product"
+		},
+		{
+			"type": "select",
+			"id": "section_Title_alignment",
+			"label": "section title alignment",
+			"options": [
+				{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "center"
+		},
+		{
+			"type": "text",
+			"id": "sold_title",
+			"label": "Sold Out",
+			"default": "Sold Out"
+		},
+		{
+			"type": "text",
+			"id": "sale_title",
+			"label": "Sale",
+			"default": "Sale"
+		},
+		{
+			"type": "collection",
+			"id": "collections",
+			"label": "collections"
+		}
+	],
+	"presets": [
+		{
+			"name": "Featured Product",
+			"settings": {}
+		}
+	]
+}
+{% endschema %}
