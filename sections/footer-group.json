@@ -14,28 +14,28 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "info_raDAjt": {
+        "info_b8AGtF": {
           "type": "info",
           "settings": {
             "title": "Company information",
             "content": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere impedit quas ab suscipit explicabo eius ipsam soluta cupiditate voluptates blanditiis illum consequatur hic eaque totam veniam, magnam dolore, dolor nesciunt.</p>"
           }
         },
-        "link_8w4KC4": {
+        "link_pnC7Gw": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
             "menu": "footer"
           }
         },
-        "link_7Bygff": {
+        "link_tpam7f": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
             "menu": "footer"
           }
         },
-        "link_P6FawP": {
+        "link_cFzFE9": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
@@ -44,10 +44,10 @@
         }
       },
       "block_order": [
-        "info_raDAjt",
-        "link_8w4KC4",
-        "link_7Bygff",
-        "link_P6FawP"
+        "info_b8AGtF",
+        "link_pnC7Gw",
+        "link_tpam7f",
+        "link_cFzFE9"
       ],
       "settings": {}
     }
