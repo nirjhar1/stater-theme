@@ -14,7 +14,7 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "info_8AFhpy": {
+        "info_b8AGtF": {
           "type": "info",
           "settings": {
             "title": "Company information",
@@ -28,14 +28,14 @@
             "menu": "footer"
           }
         },
-        "link_7Bygff": {
+        "link_HwepCp": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
             "menu": "footer"
           }
         },
-        "link_P6FawP": {
+        "link_gzqaRF": {
           "type": "link",
           "settings": {
             "title": "Imoprtant Links",
@@ -44,10 +44,9 @@
         }
       },
       "block_order": [
-        "info_8AFhpy",
         "link_8w4KC4",
-        "link_7Bygff",
-        "link_P6FawP"
+        "link_HwepCp",
+        "link_gzqaRF"
       ],
       "settings": {}
     }
