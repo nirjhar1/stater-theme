@@ -1,0 +1,56 @@
+<style>
+	.featured-collection {
+		background-color: #f8f9fa;
+		padding: 50px 0;
+	}
+</style>
+
+<section class="featured-collection">
+	<div class="container">
+		<div class="row">
+			{% for item in collections %}
+				<div class="col-xl-{{ section.settings.count }} mb-4" {{ item.shopify_attributes }}>
+					<div class="card">
+						{%- if item.image.src -%}
+							<img
+								src="{{ item.image.src | img_url:'master' }}"
+								class="card-img-top"
+								alt="{{  item.image.alt | escape | default: item.title }}"
+							>
+						{%- else -%}
+							{{ 'collection-1' | placeholder_svg_tag }}
+						{%- endif -%}
+						<div class="card-body">
+							<h5 class="card-title">{{ item.title }}</h5>
+							<p>{{ item.description }}</p>
+							<a href="{{ item.url }}" class="btn btn-primary">see more</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Featured Collection",
+	"class": "featured-collection",
+	"settings": [
+		{
+			"type": "range",
+			"id": "count",
+			"min": 1,
+			"max": 4,
+			"step": 1,
+			"label": "Column Number",
+			"default": 2
+		}
+	],
+	"presets": [
+		{
+			"name": "Featured Collection",
+		}
+	]
+}
+{% endschema %}

@@ -9,12 +9,15 @@
  */
 {
   "sections": {
-    "hero_area": {
-      "type": "hero-area",
-      "settings": {}
+    "featured_collection_fc3bzw": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
+      "settings": {
+        "count": 4
+      }
     }
   },
   "order": [
-    "hero_area"
+    "featured_collection_fc3bzw"
   ]
 }
