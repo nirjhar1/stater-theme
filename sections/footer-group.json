@@ -14,7 +14,7 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "info_b8AGtF": {
+        "info_zhkTJy": {
           "type": "info",
           "settings": {
             "title": "Company information",
@@ -44,6 +44,7 @@
         }
       },
       "block_order": [
+        "info_zhkTJy",
         "link_8w4KC4",
         "link_HwepCp",
         "link_gzqaRF"
