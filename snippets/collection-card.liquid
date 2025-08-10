@@ -1,0 +1,16 @@
+<div class="card">
+	{%- if item.image.src -%}
+		<img
+			src="{{ item.image.src | img_url:'master' }}"
+			class="card-img-top"
+			alt="{{  item.image.alt | escape | default: item.title }}"
+		>
+	{%- else -%}
+		{{ 'collection-1' | placeholder_svg_tag }}
+	{%- endif -%}
+	<div class="card-body">
+		<h5 class="card-title">{{ item.title }}</h5>
+		<p>{{ item.description }}</p>
+		<a href="{{ item.url }}" class="btn btn-primary">see more</a>
+	</div>
+</div>
