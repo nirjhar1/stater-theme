@@ -23,7 +23,7 @@
 			{%- if section.settings.collections.products.size > 0 -%}
 				{% for product in section.settings.collections.products limit: 8 %}
 					<div class="col-xl-{{ section.settings.card_count }} mb-4">
-                        {%- render 'product-card', product: product -%}
+						{%- render 'product-card', product: product -%}
 					</div>
 				{% endfor %}
 			{%- else -%}
