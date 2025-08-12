@@ -1,0 +1,44 @@
+{%- style -%}
+	.main-cart {
+		padding: 100px 0;
+		background-color: #f9f9f9;
+		border-radius: 8px;
+	}
+{%- endstyle -%}
+
+<section class="main-cart">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1 class="main-cart__title">Cart</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="cart_items">
+					{%- if cart != blank -%}
+						{%- for item in cart.items -%}
+                          <h3>{{ item.product.title }}</h3>
+                        {%- endfor -%}
+					{%- else -%}
+						no items in cart
+					{%- endif -%}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Main Cart",
+	"class": "main-cart",
+	"settings": [],
+	"presets": [
+		{
+			"name": "Main Cart",
+			"settings": {}
+		}
+	]
+}
+{% endschema %}
