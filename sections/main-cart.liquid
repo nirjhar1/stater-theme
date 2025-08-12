@@ -16,12 +16,15 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="cart_items">
-					{%- if cart != blank -%}
+					{%- if cart.item_count > 0 -%}
 						{%- for item in cart.items -%}
-                          <h3>{{ item.product.title }}</h3>
-                        {%- endfor -%}
+							<h3>{{ item.product.title }}</h3>
+							<p>Original Price: {{ item.original_price | money }}</p>
+							<p>Quantity: {{ item.quantity }}</p>
+							<p>Line item Price: {{ item.original_line_price | money }}</p>
+						{%- endfor -%}
 					{%- else -%}
-						no items in cart
+						No items in cart
 					{%- endif -%}
 				</div>
 			</div>
