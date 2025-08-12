@@ -1,29 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ request.locale.iso_code }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="{{ page_description }}">
-    <link rel="canonical" href="{{ canonical_url }}">
-    <title>{{ page_title }}</title>
-     {% comment %} all css here {% endcomment %}
-    {{ 'bootstrap.css' | asset_url | stylesheet_tag }}
-    {{ 'style.css' | asset_url | stylesheet_tag }}
-     {{content_for_header}} 
-</head>
-<body id="{{ page_title | handleize }}" class="{{ template }} {% if template.name == 'product' %}{{ product.handle }}{% endif %} {% if template.name == 'collection' %}{{ collection.handle }}{% endif %}">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="description" content="{{ page_description }}">
+		<link rel="canonical" href="{{ canonical_url }}">
+		<title>{{ page_title }}</title>
+		{% comment %} all css here {% endcomment %}
+		{{ 'bootstrap.css' | asset_url | stylesheet_tag }}
+		{{ 'style.css' | asset_url | stylesheet_tag }}
+		{{ content_for_header }}
+	</head>
+	<body
+		id="{{ page_title | handleize }}"
+		class="{{ template }} {% if template.name == 'product' %}{{ product.handle }}{% endif %} {% if template.name == 'collection' %}{{ collection.handle }}{% endif %}"
+	>
+		{% sections 'header-group' %}
+		<main>
+			{{ content_for_layout }}
+		</main>
+		{% sections 'footer-group' %}
 
-     {% sections 'header-group' %}
-     <main>
-          {{content_for_layout}} 
-     </main>
-     {% sections 'footer-group' %}
+		{% comment %} all js here {% endcomment %}
+		<script src="{{ 'jquery.js' | asset_url }}" defer="defer"></script>
+		<script src="{{ 'popper.js' | asset_url }}" defer="defer"></script>
+		<script src="{{ 'bootstrap.min.js' | asset_url }}" defer="defer"></script>
+		
+          
+          
+          
+          
+          
+          
+          
+          {% if template == 'product' and product.has_only_default_variant == false %}
+			<script src="{{ 'option_selection.js' | shopify_asset_url}}" defer="defer"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", (event) => {
 
 
-     {% comment %} all js here {% endcomment %}
-     <script src="{{ 'jquery.js' | asset_url }}" defer="defer"></script>
-     <script src="{{ 'popper.js' | asset_url }}" defer="defer"></script>
-     <script src="{{ 'bootstrap.min.js' | asset_url }}" defer="defer"></script>
-</body>
+
+
+
+
+
+                         
+				  var selectCallback = function(variant, selector) {
+
+                         
+				    if (variant) {
+				      if (variant.available) {
+				        // Selected a valid variant that is available.
+				        $('#add-to-cart-button').removeClass('disabled').removeAttr('disabled').html('Add to Cart');
+				      } else {
+				        // Variant is sold out.
+				        $('#add-to-cart-button').html('Sold Out').addClass('disabled').attr('disabled', 'disabled');
+				      }
+				      // Whether the variant is in stock or not, we can update the price and compare at price.
+				      if ( variant.compare_at_price > variant.price ) {
+				        $('#price-field').html('<span class="product-price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_with_currency_format }}")+ '</s>');
+				      } else {
+				        $('#price-field').html('<span class="product-price">'+  Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}") + '</span>' );
+				      }
+				    } else {
+				      // variant doesn't exist.
+				      $('#add-to-cart-button').val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
+				    }
+				  }
+
+
+
+
+
+				  // initialize multi selector for product
+				  jQuery(function($) {
+				    new Shopify.OptionSelectors("YOURDOMID", {
+				      product: {{ product | json }} , // required
+				      onVariantSelected: selectCallback, // fire each time after selecting an option
+				      enableHistoryState: true // default: false
+				    });
+				  });
+				});
+			</script>
+		{% endif %}
+	</body>
 </html>

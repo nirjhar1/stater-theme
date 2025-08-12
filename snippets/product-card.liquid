@@ -3,6 +3,9 @@
 		<img
 			src="{{ product.featured_media | img_url:'master' }}"
 			class="card-img-top"
+			width="auto"
+			height="auto"
+			loading="lazy"
 			alt="{{ product.title | escape }}"
 		>
 	{%- else -%}

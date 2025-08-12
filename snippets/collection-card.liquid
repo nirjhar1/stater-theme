@@ -2,6 +2,10 @@
 	{%- if item.image.src -%}
 		<img
 			src="{{ item.image.src | img_url:'master' }}"
+			width="auto"
+			height="auto"
+			loading="lazy"
+			{{ item.shopify_attributes }}
 			class="card-img-top"
 			alt="{{  item.image.alt | escape | default: item.title }}"
 		>
