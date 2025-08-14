@@ -14,10 +14,11 @@
 					{%- if feature_image != blank -%}
 						<img
 							src="{{ feature_image.src | image_url: width: 500 }}"
-							width="auto"
+							width="500"
 							height="auto"
 							loading="lazy"
 							alt="{{ feature_image.alt | escape }}"
+							id="product-image"
 						>
 					{%- else -%}
 						{{ 'product-1' | placeholder_svg_tag }}
@@ -53,7 +54,7 @@
 									{%- endfor -%} {% endcomment %}
 								</select>
 							{%- endif -%}
-
+							<br>
 							<input
 								type="number"
 								name="quantity"
@@ -70,6 +71,7 @@
 									disabled="disabled"
 								{%- endif -%}
 							>
+								<br> <br>
 							{{ form | payment_button }}
 						{% endform %}
 					</div>

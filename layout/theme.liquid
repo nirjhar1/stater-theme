@@ -44,11 +44,17 @@
 								$('#variant_price').html(`
 									<span class="price">${Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}")}</span>
 									<s class="compare-price">${Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_with_currency_format }}")}</s>
+									
 								`);
 							} else {
 								$('#variant_price').html(`
 									<span class="price">${Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}")}</span>
 								`);
+							}
+							// Update media
+							if (variant.featured_media) {
+								var imageUrl = variant.featured_media.preview_image.src;
+								$('#product-image').attr('src', imageUrl);
 							}
 						} else {
 							$('#add-to-cart-btn').val('Unavailable').attr('disabled', 'disabled');
@@ -58,7 +64,8 @@
 					jQuery(function($) {
 						new Shopify.OptionSelectors('variant_select', {
 							product: {{ product | json }},
-							onVariantSelected: selectCallback
+							onVariantSelected: selectCallback,
+							enableHistoryState: true
 						});
 					});
 				});
