@@ -46,11 +46,11 @@
 								<input type="hidden" name="id" value="{{ current_variant.id }}">
 							{%- else -%}
 								<select name="id" id="variant_select">
-									{%- for variant in product.variants -%}
+									{% comment %} {%- for variant in product.variants -%}
 										<option value="{{ variant.id }}">
 											{{ variant.title }} - {{ variant.price | money }}
 										</option>
-									{%- endfor -%}
+									{%- endfor -%} {% endcomment %}
 								</select>
 							{%- endif -%}
 
