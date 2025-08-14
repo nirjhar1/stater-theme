@@ -30,21 +30,16 @@
 		{% if template == 'product' %}
 			<script src="{{ 'option_selection.js' | shopify_asset_url}}" defer="defer"></script>
 			<script>
-				document.addEventListener("DOMContentLoaded", (event) => {
-					{% comment %} cadllback function {% endcomment %}
-					 var selectCallback = function(variant){
-						if(variant){
-							
-
-
-							if(variant.available){
-								$('#add-to-cart-btn').removeAttr('disabled').val('Add to Cart')
-							} else{
-								$('#add-to-cart-btn').val('Sold Out')
+				document.addEventListener("DOMContentLoaded", function() {
+					var selectCallback = function(variant) {
+						if (variant) {
+							if (variant.available) {
+								$('#add-to-cart-btn').removeAttr('disabled').val('Add to Cart');
+							} else {
+								$('#add-to-cart-btn').val('Sold Out');
 							}
 
-
-							{% comment %} update price {% endcomment %}
+							// Update price
 							if (variant.compare_at_price > variant.price) {
 								$('#variant_price').html(`
 									<span class="price">${Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}")}</span>
@@ -55,21 +50,19 @@
 									<span class="price">${Shopify.formatMoney(variant.price, "{{ shop.money_with_currency_format }}")}</span>
 								`);
 							}
-
-
-
-						} else{
-							$('#add-to-cart-btn').val('Unavailable').attr('disabled', 'disabled')
+						} else {
+							$('#add-to-cart-btn').val('Unavailable').attr('disabled', 'disabled');
 						}
-					}
-					{% comment %} inisilize option selector {% endcomment %}
-					 jQuery(function($){
-						new shopify.OptionSelectors('variant_select', {
+					};
+
+					jQuery(function($) {
+						new Shopify.OptionSelectors('variant_select', {
 							product: {{ product | json }},
-							onVariantSelected: selectCallback,
+							onVariantSelected: selectCallback
 						});
-					})
+					});
 				});
+
 			</script>
 		{% endif %}
 	</body>
