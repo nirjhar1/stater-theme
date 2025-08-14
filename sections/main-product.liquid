@@ -31,7 +31,7 @@
 						{{ product.description | truncatewords: 30, '...' }}
 					</p>
 
-					<div class="main-product-price">
+					<div class="main-product-price" id="variant_price">
 						<span class="price">{{ product.price | money }}</span>
 						{%- if product.compare_at_price > product.price -%}
 							<s class="compare-price">
@@ -45,7 +45,7 @@
 							{%- if product.has_only_default_variant -%}
 								<input type="hidden" name="id" value="{{ current_variant.id }}">
 							{%- else -%}
-								<select name="id">
+								<select name="id" id="variant_select">
 									{%- for variant in product.variants -%}
 										<option value="{{ variant.id }}">
 											{{ variant.title }} - {{ variant.price | money }}
@@ -65,6 +65,7 @@
 							<input
 								type="submit"
 								value="Add to cart"
+								id="add-to-cart-btn"
 								{%- if current_variant.available == false -%}
 									disabled="disabled"
 								{%- endif -%}
