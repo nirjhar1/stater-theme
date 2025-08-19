@@ -13,17 +13,78 @@
 				<h1 class="main-cart__title">Cart</h1>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-12">
 				<div class="cart_items">
 					{%- if cart.item_count > 0 -%}
-						{%- for item in cart.items -%}
-							<h3>{{ item.product.title }}</h3>
-							<p>Original Price: {{ item.original_price | money }}</p>
-							<p>Quantity: {{ item.quantity }}</p>
-							<p>Line item Price: {{ item.original_line_price | money }}</p>
-						{%- endfor -%}
+						<form action="{{ routes.cart_url }}" method="post">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Image</th>
+										<th>Info</th>
+										<th>Quantity</th>
+										<th>Sub Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									{%- for item in cart.items -%}
+										<tr>
+											<td>
+												<img
+													src="{{ item.image.src | image_url: width: 150 }}"
+													height="auto"
+													width="auto"
+													loading="lazy"
+													alt="{{ item.image.alt}}"
+												>
+											</td>
+											<td>
+												<h4>{{ item.product.title }}</h4>
+												<p>{{ item.original_price | money }}</p>
+												<div>
+													{%- if item.product.has_only_default_variant == false -%}
+														{%- for option in item.options_with_values -%}
+															<p>{{ option.name }} : {{ option.value }}</p>
+														{%- endfor -%}
+													{%- endif -%}
+												</div>
+											</td>
+											<td>
+												<p>
+													quantity:
+													<input type="number" name="updates[]" value="{{ item.quantity }}">
+												</p>
+												<p>
+													<a class="btn btn-danger" href="{{ item.url_to_remove }}">Remove</a>
+												</p>
+											</td>
+											<td>{{ item.original_line_price | money }}</td>
+										</tr>
+									{%- endfor -%}
+								</tbody>
+							</table>
+
+							<div class="row">
+								<div class="col-lg-9">
+									<p>
+										<input type="submit" value="Update Cart" class="btn btn-success">
+									</p>
+								</div>
+								<div class="col-lg-3">
+									<div>
+										<p><b>Total:</b> {{ cart.total_price | money }}</p>
+										<p>
+											<input
+												type="submit"
+												name="checkout"
+												value="Checkout"
+											>
+										</p>
+									</div>
+								</div>
+							</div>
+						</form>
 					{%- else -%}
 						No items in cart
 					{%- endif -%}
