@@ -13,6 +13,7 @@
 				<h1 class="main-cart__title">Cart</h1>
 			</div>
 		</div>
+		<br>
 		<div class="row">
 			<div class="col-12">
 				<div class="cart_items">
@@ -53,7 +54,7 @@
 											<td>
 												<p>
 													quantity:
-													<input type="number" name="updates[]" value="{{ item.quantity }}">
+													<input type="number" name="updates[]" value="{{ item.quantity }}" min="1" max="{{ item.quantity }}" />
 												</p>
 												<p>
 													<a class="btn btn-danger" href="{{ item.url_to_remove }}">Remove</a>
