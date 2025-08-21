@@ -1,0 +1,38 @@
+{%- style -%}
+	.collection {
+		padding: 80px 0;
+	}
+{%- endstyle -%}
+<section class="collection">
+	<div class="container">
+		<div class="row">
+			<h1 class="text-center pb-5">Collection</h1>
+		</div>
+		<div class="row">
+			{% paginate collection.products by 8 %}
+				{% for product in collection.products %}
+					<div class="col-lg-3 mb-4">
+						{%- render 'product-card', product: product -%}
+					</div>
+				{% endfor %}
+				<div class="text-center">
+					{{ paginate | default_pagination }}
+				</div>
+			{% endpaginate %}
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Collection",
+	"class": "tp-collection",
+	"settings": [],
+	"presets": [
+		{
+			"name": "Collection",
+			"settings": {}
+		}
+	]
+}
+{% endschema %}
