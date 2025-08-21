@@ -9,6 +9,22 @@
 			<h1 class="text-center pb-5">Collection</h1>
 		</div>
 		<div class="row">
+			<div class="col-lg-9"></div>
+			<div class="col-lg-3">
+				<div class="mb-4">
+					{%- assign selected_option = collection.sort_by | default: collection.default_sort_by -%}
+					<p>Short By:</p>
+
+						<select name="sort_by" id="sort_by">
+							{% for option in collection.sort_options %}
+								<option value="{{ option.value }}" {% if selected_option == option.value  %} selected="selected" {% endif %}>{{ option.name }}</option>
+							{% endfor %}
+						</select>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			{% paginate collection.products by 8 %}
 				{% for product in collection.products %}
 					<div class="col-lg-3 mb-4">
@@ -23,6 +39,17 @@
 	</div>
 </section>
 
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const sortBySelect = document.getElementById('sort_by');
+		sortBySelect.addEventListener('change', function() {
+			const selectedValue = this.value;
+			const currentUrl = new URL(window.location.href);
+			currentUrl.searchParams.set('sort_by', selectedValue);
+			window.location.href = currentUrl.toString();
+		});
+	});
+</script>
 {% schema %}
 {
 	"name": "Collection",
