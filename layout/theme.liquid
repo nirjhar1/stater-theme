@@ -11,7 +11,7 @@
 		{{ 'bootstrap.css' | asset_url | stylesheet_tag }}
 		{{ 'style.css' | asset_url | stylesheet_tag }}
 		{{ content_for_header }}
-	</head>
+	{% include 'pagefly-app-header' %}</head>
 	<body
 		id="{{ page_title | handleize }}"
 		class="{{ template }} {% if template.name == 'product' %}{{ product.handle }}{% endif %} {% if template.name == 'collection' %}{{ collection.handle }}{% endif %}"
