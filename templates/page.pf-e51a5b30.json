@@ -16,5 +16,6 @@
   },
   "order": [
     "pf-e51a5b30"
-  ]
+  ],
+  "layout": "theme.pagefly"
 }
